@@ -30,3 +30,6 @@ vim.opt.swapfile = false
 --  n... :  where to save the viminfo files
 vim.opt.viminfo="'10,\"100,:20,%,n~/.viminfo"
 vim.opt.undofile = true
+
+-- Vim completion options
+vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
