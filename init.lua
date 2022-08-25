@@ -1,6 +1,4 @@
 require("jayr")
-require('go').setup()
-
 
 function _G.put(...)
   local objects = {}

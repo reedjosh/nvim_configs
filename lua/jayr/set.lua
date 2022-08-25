@@ -11,7 +11,7 @@ vim.opt.incsearch = true
 
 vim.opt.smartindent = true
 vim.opt.wrap = false
-vim.g.mapleader = " "
+vim.g.mapleader = "\\"
 
 vim.opt.confirm = true
 vim.opt.ignorecase = true
@@ -20,6 +20,8 @@ vim.opt.confirm = true
 vim.opt.swapfile = false
 -- Not sure how to convert
 -- t_vb=
+
+vim.opt.hidden = false -- Allow split netrw
 
 
 -- Tell vim to remember certain things when we exit
