@@ -10,3 +10,14 @@ function _G.put(...)
   print(table.concat(objects, '\n'))
   return ...
 end
+
+
+ -- go to last loc when opening a buffer
+vim.api.nvim_create_autocmd(
+  "BufReadPost",
+  { command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]] }
+)
+vim.api.nvim_create_autocmd(
+  "VimEnter",
+  { command = [[if argc() == 0 | Explore! | endif]] }
+)
