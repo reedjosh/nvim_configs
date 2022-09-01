@@ -14,5 +14,4 @@ require 'go'.setup({
     run_in_floaterm = true,
 })
 
-vim.cmd("autocmd BufWritePre *.go :silent! lua require('go.format').gofmt()")
-vim.cmd("autocmd BufWritePre *.go :silent! lua require('go.import').gofmt()")
+vim.cmd("autocmd BufWritePre *.go :silent! lua require ('go.format').goimport() <BAR> lua require('go.format').gofmt()")
