@@ -1,7 +1,3 @@
-local Remap = require("jayr.keymap")
-local nnoremap = Remap.nnoremap
-local inoremap = Remap.inoremap
-
 -- Setup nvim-cmp.
 local cmp = require("cmp")
 local lspkind = require('lspkind')
@@ -12,6 +8,7 @@ local source_mapping = { -- used for lspkind
 	cmp_tabnine = "[TN]",
 	path = "[Path]",
 }
+
 cmp.setup({
     formatting = {
 		format = function(entry, vim_item)
