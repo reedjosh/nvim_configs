@@ -35,3 +35,11 @@ vim.opt.undofile = true
 
 -- Vim completion options
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+
+-- Set a wrap indicator column.
+vim.opt.colorcolumn = "120"
+vim.filetype.add({
+  filename = {
+    ['Tiltfile'] = 'python',
+  }
+})

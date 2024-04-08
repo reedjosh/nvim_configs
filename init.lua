@@ -1,4 +1,5 @@
 require("jayr")
+require("config.snippets")
 
 function _G.put(...)
   local objects = {}
@@ -11,7 +12,6 @@ function _G.put(...)
   return ...
 end
 
-
  -- go to last loc when opening a buffer
 vim.api.nvim_create_autocmd(
   "BufReadPost",
@@ -21,3 +21,6 @@ vim.api.nvim_create_autocmd(
   "VimEnter",
   { command = [[if argc() == 0 | Explore! | endif]] }
 )
+
+-- Set tiltfile filetype.
+vim.filetype.add({ filename = { ['Tiltfile'] = 'starlark' } })

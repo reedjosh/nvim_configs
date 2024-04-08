@@ -15,29 +15,23 @@ return require('packer').startup(function(use)
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use 'p00f/nvim-ts-rainbow'
 
+    -- Telescope/FZF
+    use {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        requires = { 'nvim-lua/plenary.nvim' }
+    }
 
-    -- LSP
-    use 'neovim/nvim-lspconfig'
-    use 'onsails/lspkind-nvim' -- Adds completion type icons.
-    use({ -- LSP Plugin With Some sweet features.
-        -- Not yet configured.
-        "glepnir/lspsaga.nvim",
-        branch = "main",
-        config = function()
-            local saga = require("lspsaga")
-
-            saga.init_lsp_saga({
-                -- your configuration
-            })
-        end,
-    })
-
-    -- Completion
-    use 'hrsh7th/nvim-cmp'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
+    -- Colorscheme
+    use {
+        'maxmx03/solarized.nvim',
+         config = function()
+          vim.o.background = 'dark' -- or 'light'
+          vim.cmd.colorscheme 'solarized'
+        end
+    }
 
     -- Comments
     use {
@@ -47,23 +41,36 @@ return require('packer').startup(function(use)
         end
     }
 
-    -- Telescope/FZF
-    use { 'nvim-telescope/telescope-fzf-native.nvim',
-        run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        requires = { { 'nvim-lua/plenary.nvim' } }
-    }
+    -- Font Icons
+    use 'nvim-tree/nvim-web-devicons'
 
     -- Snips
-    use 'L3MON4D3/LuaSnip'
-    use 'saadparwaiz1/cmp_luasnip'
+    use {'L3MON4D3/LuaSnip', after = 'nvim-cmp', config = function() require('config.snippets') end }
 
-    -- Colorschemes
-    use 'folke/tokyonight.nvim'
-    use 'ray-x/aurora'
-    use 'ray-x/starry.nvim'
+    use { -- lsp-zero a boilerplate lsp helper.
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v1.x',
+        requires = {
+          -- LSP Support
+          {'neovim/nvim-lspconfig'},             -- The lsp plugin.
+          {'williamboman/mason.nvim'},           -- Installs Lang Servers from vim.
+          {'williamboman/mason-lspconfig.nvim',  -- LSP default configs.
+           run = ":MasonUpdate"}, -- :MasonUpdate updates registry contents
 
-    -- Icons
-    use 'kyazdani42/nvim-web-devicons'
+          -- Autocompletion
+          {'hrsh7th/nvim-cmp'},         -- Required
+          {'hrsh7th/cmp-nvim-lsp'},     -- Required
+          {'hrsh7th/cmp-buffer'},
+          {'hrsh7th/cmp-path'},
+          {'saadparwaiz1/cmp_luasnip'},
+          {'hrsh7th/cmp-nvim-lua'},
+          {'hrsh7th/cmp-cmdline'},
+
+          {'onsails/lspkind.nvim'},
+
+          -- Snippets
+          {'L3MON4D3/LuaSnip'},             -- Required
+          {'rafamadriz/friendly-snippets'},
+        }
+    }
 end)
