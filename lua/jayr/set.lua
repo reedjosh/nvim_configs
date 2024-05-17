@@ -43,3 +43,6 @@ vim.filetype.add({
     ['Tiltfile'] = 'python',
   }
 })
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
